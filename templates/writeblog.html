@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block body %}
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible" style="margin: 10px;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="margin-bottom: 2px;">&times;</a>
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+<center>
+<h5 style="margin-top: 10px;">Start writing your own blog.</h5></center>
+<hr>
+<div class="containerf">
+    <form action="/post" method="POST" enctype="multipart/form-data">
+
+        <label for="title">Post Title</label>
+        <input type="text" id="fname" name="title" placeholder="write title for post">
+
+        <label for="tagline">Tagline</label>
+        <input type="text" id="lname" name="tagline" placeholder="write tagline for post">
+
+
+
+        <label for="content">Content</label>
+        <textarea id="content" name="content" placeholder="write post content here" style="height:200px"></textarea>
+
+        <label for="author">Author</label>
+        <input type="text" id="lname" name="author" placeholder="write author name">
+
+        <p>add suitable image for post</p>
+        <input type="file" name="file1">
+
+
+
+        <button type="submit" class="btn btn-outline-secondary">post</button>
+
+    </form>
+</div>
+
+{% endblock %}

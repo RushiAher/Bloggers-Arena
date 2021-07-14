@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible" style="margin: 10px;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="margin-bottom: 2px;">&times;</a>
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+
+<!-- Page Header -->
+<div style="position: relative; margin: 10px; margin-top: 2px;font-family: fantasy;">
+    <center><img src="{{url_for('static', filename='home-bg.jpg')}}" alt="logo"
+            style="width: 100%; height: 500px; border:10px solid #e7e7e7"></center>
+    <div class="centered">
+        <h5 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">welcome to</h5>
+        <h2 class="ml5">
+            <span class="text-wrapper">
+                <span class="line line1"></span>
+                <span class="letters letters-left">Blogger's</span>
+
+                <span class="letters letters-right">Arena</span>
+                <span class="line line2"></span>
+            </span>
+        </h2>
+        <center>
+            <h6 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">start writting
+                your own blog</h6>
+
+            <button onclick="document.getElementById('Id01').style.display='block'" type="button"
+                class="btn btn-outline-secondary"
+                style="margin-top: 30px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">start
+                blogging</button>
+        </center>
+    </div>
+</div>
+<div>
+    <center>
+    <h3>Read Blogs</h3>
+    </center>
+    <hr>
+</div>
+<!-- Main Content -->
+<div class="container" style="margin-bottom: 20px;">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {% for post in posts %}
+            <div class="post-preview">
+                <a href="/getblog/{{post.sno}}">
+                    <h2 class="post-title" style="color: #402d2d;">{{ post.title }}
+
+                    </h2>
+                    <h3 class="post-subtitle" style="color: #402d2d;">
+                        {{post.tagline}}
+                    </h3>
+                </a>
+                <p class="post-meta">Posted by
+                    <a href="#">{{post.author}}</a>
+                    on {{post.date}}</p>
+            </div>
+
+            {{post.content[0:143]}}...
+            <hr>
+            </li></a>
+            {% endfor %}
+
+            <!-- Pager -->
+            <div class="clearfix">
+                <a class="btn btn-secondary float-left" href="{{prev}}">&larr; Previous</a>
+                <a class="btn btn-secondary float-right" href="{{next}}">Next &rarr;</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

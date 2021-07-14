@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block body %}
+<div class="row" style="display:contents; ">
+    <div class="column" style="padding-left: 40px; padding-top: 20px;">
+        <img src="{{url_for('static', filename='about.png')}}" alt="Snow" style="width:90%; ">
+    </div>
+    <div class="column" style="margin-top: 100px;animation: animateright 2s;">
+        <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;     background-color: #f8f9fa;color: black;
+    padding: 10px;
+    border-radius: 20px;
+">Blogger's Arena is a open platform for all bloggers to put their thoughts and connect with people all over world. Here you can find blogs on different topics to read. Also you can start writing your own blog posts in one single click.   </p>
+    </div>
+
+</div>
+{% endblock %}
