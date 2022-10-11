@@ -1,0 +1,15 @@
+{
+    "params": {
+        "local_server": "True",
+        "local_uri": "mysql://root:@localhost/bloggersarena",
+        "production_uri": "mysql://root:@localhost/bloggersarena",
+        "blog_name": "Blogger's Arena",
+        "fb_uri": "https://www.facebook.com/",
+        "insta_uri": "https://www.instagram.com/",
+        "git_uri": "https://www.github.com/",
+        "gmail-user": "-----------",
+        "gmail-password": "------",
+        "no_of_posts": 3,
+        "upload_location": "C:\\Users\\aher\\Desktop\\Programming\\Web_tut_projects\\flask_projetcs\\Bloggers arena\\static"
+    }
+}

@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Ubuntu&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+    <title>{{params[blog_name]}}</title>
+    <style>
+        /* Centered text */
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .ml5 {
+            position: relative;
+            font-weight: 300;
+            font-size: 3.5em;
+            color: #402d2d;
+        }
+
+        .ml5 .text-wrapper {
+            position: relative;
+            display: inline-block;
+            padding-top: 0.1em;
+            padding-right: 0.05em;
+            padding-bottom: 0.15em;
+            line-height: 1em;
+        }
+
+        .ml5 .line {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            height: 3px;
+            width: 100%;
+            background-color: #402d2d;
+            transform-origin: 0.5 0;
+        }
+
+        .ml5 .ampersand {
+            font-family: Baskerville, serif;
+            font-style: italic;
+            font-weight: 400;
+            width: 1em;
+            margin-right: -0.1em;
+            margin-left: -0.1em;
+        }
+
+        .ml5 .letters {
+            display: inline-block;
+            opacity: 0;
+        }
+
+        /* Full-width input fields */
+        input[type=text],
+        input[type=password],
+        input[type=email] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+
+
+
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #e14343;
+            ;
+        }
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        img.avatar {
+            width: 10%;
+            border-radius: 50%;
+
+        }
+
+
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #e14343;
+            ;
+            cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+
+        /* Style inputs with type="text", select elements and textareas */
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            /* Full width */
+            padding: 12px;
+            /* Some padding */
+            border: 1px solid #ccc;
+            /* Gray border */
+            border-radius: 4px;
+            /* Rounded borders */
+            box-sizing: border-box;
+            /* Make sure that padding and width stays in place */
+            margin-top: 6px;
+            /* Add a top margin */
+            margin-bottom: 16px;
+            /* Bottom margin */
+            resize: vertical
+                /* Allow the user to vertically resize the textarea (not horizontally) */
+        }
+
+        /* Style the submit button with a specific background color etc */
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* When moving the mouse over the submit button, add a darker green color */
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        /* Add a background color and some padding around the form */
+        .containerf {
+            border-radius: 5px;
+            background-color: #f8f9fa !important;
+            ;
+            padding: 20px;
+            margin: 40px;
+            margin-left: 150px;
+            margin-right: 150px;
+        }
+
+        @media only screen and (max-width: 1500px) {
+            .containerf {
+                margin: 20px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+        }
+
+        .sidenav {
+            width: 200px;
+            position: absolute;
+            z-index: 1;
+            top: 80px;
+            left: 10px;
+            background: #f8f9fa !important;
+            ;
+            overflow-x: hidden;
+            padding: 8px 0;
+        }
+
+        .sidenav a {
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 15px;
+            color: black;
+            display: block;
+            border: 2px solid #e7e7e7;
+            ;
+        }
+
+        .sidenav a:hover {
+            color: #595b5c;
+        }
+
+        .main {
+            margin-left: 210px;
+            /* Same width as the sidebar + left position in px */
+            font-size: 28px;
+            /* Increased text to enable scrolling */
+            padding: 0px 10px;
+            margin-top: 20px;
+        }
+
+        @media screen and (max-width: 750px) {
+            .sidenav {
+                display: none;
+            }
+
+            .main {
+                margin-left: 0px;
+            }
+
+        }
+
+        .column {
+            float: left;
+            width: 33.33%;
+            padding: 5px;
+        }
+
+        /* Clear floats after image containers */
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        @media screen and (max-width: 500px) {
+            .column {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        {% if loggedin == "false" %}
+        <a class="navbar-brand" href="/"><img src="{{url_for('static', filename='logo.png')}}" alt="logo" width="30px" ,
+                height="30px"></a>
+        {% else %}
+        <a class="navbar-brand" href="/writeblog"><img src="{{url_for('static', filename='logo.png')}}" alt="logo" width="30px" ,
+                height="30px"></a>
+        {% endif %}
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+
+                {% if loggedin == "false" %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/blogs">Blogs</a>
+                </li>
+                {% endif %}
+                {% if loggedin == "true" %}
+                <li class="nav-item active">
+                    <a class="nav-link" href="/writeblog">Write Blog<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="/myblog">My Blogs<span class="sr-only">(current)</span></a>
+                </li>
+                {% endif %}
+
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact Us</a>
+                </li>
+
+
+            </ul>
+
+            {% if loggedin == "false" %}
+
+            <button onclick="document.getElementById('Id02').style.display='block'" style="margin: 2px;"
+                class="btn btn-outline-secondary my-2 my-sm-0" type="button">Login</button>
+
+            <button onclick="document.getElementById('Id01').style.display='block'" style="margin: 2px;"
+                class="btn btn-outline-secondary my-2 my-sm-0" type="button">SignUp</button>
+            {% endif %}
+            {% if loggedin == "true" %}
+            <a href="/logout">
+                <button style="margin: 2px;" class="btn btn-outline-secondary my-2 my-sm-0"
+                    type="button">Logout</button></a>
+            {% endif %}
+
+        </div>
+    </nav>
+    <div id="Id01" class="modal">
+        <center>
+            <form class="modal-content animate" action="/signup" method="POST"
+                style="width: fit-content; margin: 10px;padding: 10px;">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('Id01').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                    <img src={{url_for('static',filename='logo.png')}} alt="Avatar" class="avatar">
+                    <h4 style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">SignUp to start blogging
+                    </h4>
+                </div>
+
+                <div class="container">
+                    <label for="uname"><b>Email</b></label>
+                    <input type="email" placeholder="Enter Email" name="Remail" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="Rpass" required>
+                    <div>
+                        <label for="psw-repeat"><b>Repeat Password</b></label>
+                        <input type="password" placeholder="Repeat Password" name="Rpsw-repeat" required>
+                        <button class="btn btn-outline-secondary" type="submit">SignUp</button></div>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1; align-items: flex-start;">
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('Id01').style.display='none'" class="cancelbtn">Cancel</button>
+
+                </div>
+            </form>
+        </center>
+    </div>
+
+
+    <div id="Id02" class="modal">
+        <center>
+            <form class="modal-content animate" action="/login" method="POST"
+                style="width: fit-content; margin: 10px;padding: 10px;">
+                <div class="imgcontainer">
+                    <span onclick="document.getElementById('Id02').style.display='none'" class="close"
+                        title="Close Modal">&times;</span>
+                    <img src={{url_for('static',filename='logo.png')}} alt="Avatar" class="avatar">
+                </div>
+
+                <div class="container">
+                    <label for="uname"><b>Email</b></label>
+                    <input type="email" placeholder="Enter Username" name="Luname" required>
+
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="Lpass" required>
+                    <div>
+
+                        <button class="btn btn-outline-secondary" type="submit">Login</button></div>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                </div>
+
+                <div class="container" style="background-color:#f1f1f1;">
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="document.getElementById('Id02').style.display='none'" class="cancelbtn">Cancel</button>
+
+                </div>
+            </form>
+        </center>
+    </div>
+    {% block body %} {% endblock %}
+
+    <!-- Footer -->
+    <footer class="text-center text-white " style="background-color:#5d5c61 ; font-family: fantasy; margin-top: 10px;">
+        <!-- Grid container -->
+        <h6 style="font-family: Georgia, 'Times New Roman', Times, serif;padding-top: 20px;">connect with us</h6>
+        <div class="container p-4 pb-0">
+            <!-- Section: Social media -->
+            <section class="mb-4">
+                <!-- Facebook -->
+                <a class="btn btn-outline-light btn-floating m-1" href="{{params['fb_uri']}}" role="button"
+                    target="_blank"><i class="fab fa-facebook-f"></i></a>
+
+
+                <!-- Instagram -->
+                <a class="btn btn-outline-light btn-floating m-1" href="{{params['insta_uri']}}" role="button"
+                    target="_blank"><i class="fab fa-instagram"></i></a>
+
+
+                <!-- Github -->
+                <a class="btn btn-outline-light btn-floating m-1" href="{{params['git_uri']}}" role="button"
+                    target="_blank"><i class="fab fa-github"></i></a>
+            </section>
+            <!-- Section: Social media -->
+        </div>
+        <!-- Grid container -->
+
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color:#b1a296;">
+            © {{params['current_yr']}} Copyright:
+            <a class="text-white" href="#">BloggersArena.com</a>
+        </div>
+        <!-- Copyright -->
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script>
+            // Get the modal
+            var modal = document.getElementById('id01');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+
+            // Get the modal
+            var modal = document.getElementById('id02');
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
+        <script>
+            anime.timeline({ loop: true })
+                .add({
+                    targets: '.ml5 .line',
+                    opacity: [0.5, 1],
+                    scaleX: [0, 1],
+                    easing: "easeInOutExpo",
+                    duration: 700
+                }).add({
+                    targets: '.ml5 .line',
+                    duration: 600,
+                    easing: "easeOutExpo",
+                    translateY: (el, i) => (-0.625 + 0.625 * 2 * i) + "em"
+                }).add({
+                    targets: '.ml5 .ampersand',
+                    opacity: [0, 1],
+                    scaleY: [0.5, 1],
+                    easing: "easeOutExpo",
+                    duration: 600,
+                    offset: '-=600'
+                }).add({
+                    targets: '.ml5 .letters-left',
+                    opacity: [0, 1],
+                    translateX: ["0.5em", 0],
+                    easing: "easeOutExpo",
+                    duration: 600,
+                    offset: '-=300'
+                }).add({
+                    targets: '.ml5 .letters-right',
+                    opacity: [0, 1],
+                    translateX: ["-0.5em", 0],
+                    easing: "easeOutExpo",
+                    duration: 600,
+                    offset: '-=600'
+                }).add({
+                    targets: '.ml5',
+                    opacity: 0,
+                    duration: 1000,
+                    easing: "easeOutExpo",
+                    delay: 1000
+                });
+        </script>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

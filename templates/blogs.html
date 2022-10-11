@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block body %}
+<div style="font-family: 'Ubuntu', sans-serif;">
+    <div class="sidenav">
+        <h5 style="padding-bottom: 20px;">Recent Posts</h5>
+
+        {% for post in posts[:-5:-1] %}
+        <a href="/getblog/{{post.sno}}">{{post.title}}</a>
+        {% endfor %}
+    </div>
+   
+    {% for post in posts %}
+    {% if loop.index%2 == 0 %}
+    
+    <div class="main ">
+        <div class="card mb-3 "
+            style="max-width: 800px;background-color: #f8f9fa;border:10px solid #e7e7e7; border-radius: 10px;animation: animateright 2s; margin-left: auto;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% set img = post.img_file %}
+                    <img src={{url_for('static',filename=img)}} alt="..."
+                        style="width: inherit;height: 300px;border-radius: 100%;padding: 5px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 30px;font-family: system-ui;">
+                            <b>{{post.title}}</b></h5>
+                        <h4 class="card-title">{{post.tagline}}</h4>
+                        <p class="card-text" style="font-size: 15px; ">{{post.content[:200]}}... <a
+                                href="/getblog/{{post.sno}}" style="color: blue;">continue reading</a></p>
+                        <p class="card-text" style="font-size: 20px;"><small class="text-muted">Author:
+                                {{post.author}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+
+    {% else %}
+    <div class="main ">
+        <div class="card mb-3 "
+            style="max-width: 800px;background-color: #f8f9fa;border:10px solid #e7e7e7; border-radius: 10px;animation: animateleft 2s; ">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    {% set img = post.img_file %}
+                    <img src={{url_for('static',filename=img)}} alt="..."
+                        style="width: inherit;height: 300px;border-radius: 100%;padding: 5px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title" style="font-size: 30px;font-family: system-ui;">
+                            <b>{{post.title}}</b></h5>
+                        <h4 class="card-title">{{post.tagline}}</h4>
+                        <p class="card-text" style="font-size: 15px;">{{post.content[:200]}}... <a
+                                href="/getblog/{{post.sno}}" style="color: blue;">continue reading</a></p>
+                        <p class="card-text" style="font-size: 20px;"><small class="text-muted">Author:
+                                {{post.author}}</small></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% endif %}
+   
+    {% endfor %}
+</div>
+
+{% endblock %}

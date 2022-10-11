@@ -1,0 +1,54 @@
+{% extends "layout.html" %}
+{% block body %}
+
+{% if posts == [] %}
+<div class="conatiner"
+    style="height: 450px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center;">
+    <center>
+        <h4>no posts yet!</h4>
+        <a href="/writeblog">
+        <button type="button" class="btn btn-secondary" style="margin-top: 200px;">start
+            Writing</button></a>
+    </center>
+</div>
+{% else %}
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-success alert-dismissible" style="margin: 10px;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" style="margin-bottom: 2px;">&times;</a>
+    {{message}}
+</div>
+
+{% endfor %}
+{% endif %}
+{% endwith %}
+<div style="font-family: 'Ubuntu', sans-serif;">
+
+    {% for post in posts %}
+    <div class="main" style="margin-right: 60px;margin-left: 60px;animation: animateleft 2s;">
+        <div class="card mb-3" style="background-color: #f8f9fa; border:10px solid #e7e7e7; border-radius: 10px;">
+
+            <h2 class="card-title " style="padding: 5px;padding-left: 10px;font-family: system-ui;">{{post.title}}</h2>
+
+            {% set img = post.img_file %}
+            <img src={{url_for('static',filename=img)}} class="card-img-top" width="100%" height="400px" alt="...">
+            <div class="card-body">
+
+                <center>
+                    <h4 class="card-title ">{{post.tagline}}</h4>
+                </center>
+                <p class="card-text" style="font-size: 20px;">{{post.content[:400]}}... </p>
+                <p class="card-text"><small class="text-muted">Author {{post.author}}</small></p>
+                <a href="/edit/{{post.sno}}" class="btn btn-secondary">Edit</a>
+                <a href="/delete/{{post.sno}}" class="btn btn-secondary">Delete</a>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+{% endif %}
+{% endblock %}
